@@ -15,28 +15,27 @@ using namespace std;
 
 int main() {
 	int count = 0;
-	vector<int> data(3);
+	int value = 0;
 
 	for (int i = 289123456; i <= 389123456; i++) {
-		data.clear();
+	
 		int val = sqrt(i);
 		count = 0;
-		if (val * val == i) {
-			count++;
-			data.push_back(val);
+		if (val * val != i) {
+			continue;
 		}
-		for (int divider = 2; divider <= val; divider++) {
-			if (i % divider == 0 and divider * divider != i) {
+		
+		
+		for (int divider = 2; divider < val; divider++) {
+			if (i % divider == 0) {
 				count += 2;
-				data.push_back(divider);
-				data.push_back(i / divider);
+				value = i / divider;
 			}
-			if (count > 3) break;
+			if (count > 2) break;
 		}
 
-		if (count == 3) {
-			sort(data.begin(), data.end());
-			cout << data[2] << " " << i;
-		}
+		if (count == 2) {
+			cout << i << " " << value << endl;
+		} 
 	}
 }
